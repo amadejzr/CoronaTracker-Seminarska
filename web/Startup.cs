@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using web.Data;
+using web.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace web
 {
@@ -27,6 +29,11 @@ namespace web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddIdentity<Uporabnik, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128).
+            AddEntityFrameworkStores<CoronaContext>().AddDefaultUI().AddDefaultTokenProviders();
+
+            
 
             services.AddDbContext<CoronaContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("CoronaContext")));
@@ -49,6 +56,8 @@ namespace web
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+            
 
             app.UseAuthorization();
 
@@ -57,6 +66,7 @@ namespace web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapRazorPages();
             });
         }
     }

@@ -1,9 +1,10 @@
 using web.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace web.Data
 {
-    public class CoronaContext : DbContext
+    public class CoronaContext : IdentityDbContext<Uporabnik>
     {
         public CoronaContext(DbContextOptions<CoronaContext> options) : base(options)
         {
@@ -21,6 +22,7 @@ namespace web.Data
             modelBuilder.Entity<Odlok>().ToTable("Odlok");
             modelBuilder.Entity<Stik>().ToTable("Stik");
             modelBuilder.Entity<Prebivalisce>().ToTable("Prebivalisce");
+            base.OnModelCreating(modelBuilder);
             
         }
     }
