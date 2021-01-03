@@ -10,6 +10,6 @@ namespace web.Models
 
         public DateTime DatumKonca{get;set;}
 
-        public ICollection<Uporabnik> Uporabniki { get; set; }
+        public Uporabnik Uporabnik { get; set; }
     }
 }

@@ -15613,8 +15613,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Create.cshtml",
+      "TargetPath": "Views\\Uporabnik\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Edit.cshtml",
+      "TargetPath": "Views\\Uporabnik\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Details.cshtml",
+      "TargetPath": "Views\\Uporabnik\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15628,6 +15643,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Index.cshtml",
+      "TargetPath": "Views\\Uporabnik\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -15635,6 +15655,11 @@
     {
       "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Delete.cshtml",
+      "TargetPath": "Views\\Uporabnik\\Delete.cshtml",
       "FileKind": "mvc"
     }
   ],
