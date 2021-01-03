@@ -15613,6 +15613,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/_ViewStart.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Create.cshtml",
       "TargetPath": "Views\\Uporabnik\\Create.cshtml",
       "FileKind": "mvc"
@@ -15628,8 +15633,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\SetPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Details.cshtml",
       "TargetPath": "Views\\Uporabnik\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/Account/_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15643,6 +15663,26 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Shared/_LoginPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_LoginPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/Account/Login.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Index.cshtml",
       "TargetPath": "Views\\Uporabnik\\Index.cshtml",
       "FileKind": "mvc"
@@ -15653,13 +15693,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/Account/Logout.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Views/Uporabnik/Delete.cshtml",
       "TargetPath": "Views\\Uporabnik\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/ajerlah/sola/CoronaTracker/web/Areas/Identity/Pages/Account/Register.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
       "FileKind": "mvc"
     }
   ],
