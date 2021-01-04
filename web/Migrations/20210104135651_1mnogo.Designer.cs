@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(CoronaContext))]
-    [Migration("20210104133819_asd")]
-    partial class asd
+    [Migration("20210104135651_1mnogo")]
+    partial class _1mnogo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,12 +169,7 @@ namespace web.Migrations
                     b.Property<DateTime>("DatumZacetka")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UporabnikId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UporabnikId");
 
                     b.ToTable("Odlok");
                 });
@@ -192,12 +187,7 @@ namespace web.Migrations
                     b.Property<string>("Naslov")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UporabnikId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UporabnikId");
 
                     b.ToTable("Prebivalisce");
                 });
@@ -250,6 +240,9 @@ namespace web.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
+                    b.Property<int?>("OdlokiId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -258,6 +251,9 @@ namespace web.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("PrebivaliscaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Priimek")
                         .HasColumnType("nvarchar(max)");
@@ -284,6 +280,10 @@ namespace web.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("OdlokiId");
+
+                    b.HasIndex("PrebivaliscaId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -339,18 +339,15 @@ namespace web.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("web.Models.Odlok", b =>
+            modelBuilder.Entity("web.Models.Uporabnik", b =>
                 {
-                    b.HasOne("web.Models.Uporabnik", "Uporabnik")
-                        .WithMany("Odloki")
-                        .HasForeignKey("UporabnikId");
-                });
+                    b.HasOne("web.Models.Odlok", "Odloki")
+                        .WithMany("Uporabnik")
+                        .HasForeignKey("OdlokiId");
 
-            modelBuilder.Entity("web.Models.Prebivalisce", b =>
-                {
-                    b.HasOne("web.Models.Uporabnik", "Uporabnik")
-                        .WithMany("Prebivalisca")
-                        .HasForeignKey("UporabnikId");
+                    b.HasOne("web.Models.Prebivalisce", "Prebivalisca")
+                        .WithMany("Uporabnik")
+                        .HasForeignKey("PrebivaliscaId");
                 });
 #pragma warning restore 612, 618
         }

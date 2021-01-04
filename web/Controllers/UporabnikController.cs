@@ -22,7 +22,11 @@ namespace web.Controllers
         // GET: Uporabnik
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Uporabniki.ToListAsync());
+        var uporabnik = _context.Uporabniki
+        .Include(u => u.Odloki).Include(c => c.Prebivalisca)
+        .AsNoTracking();
+        return View(await uporabnik.ToListAsync());
+            
         }
 
         // GET: Uporabnik/Details/5

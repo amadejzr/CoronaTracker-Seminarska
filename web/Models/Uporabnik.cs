@@ -12,9 +12,9 @@ namespace web.Models
 
         public string Telefon { get; set; }
 
-        public ICollection<Odlok> Odloki { get; set; }
+        public Odlok Odloki { get; set; }
 
-        public ICollection<Prebivalisce> Prebivalisca { get; set; }
+        public Prebivalisce Prebivalisca { get; set; }
 
 
     }

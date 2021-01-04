@@ -105,19 +105,16 @@ namespace web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Priimek = Input.Priimek};
-                var odlok = new Odlok {DatumZacetka = Input.DatumZacetka, DatumKonca = Input.DatumKonca, Uporabnik = user};
-                var prebivalisce= new Prebivalisce{Naslov = Input.Naslov, Mesto= Input.Mesto,Uporabnik=user};
+                var odlok = new Odlok {DatumZacetka = Input.DatumZacetka, DatumKonca = Input.DatumKonca};
+                var prebivalisce= new Prebivalisce{Naslov = Input.Naslov, Mesto= Input.Mesto};
+                var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Odloki = odlok,Prebivalisca = prebivalisce};
+                
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                     _context.Add(odlok);
-                    await _context.SaveChangesAsync();
-
-                    _context.Add(prebivalisce);
-                    await _context.SaveChangesAsync();
+                    
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
