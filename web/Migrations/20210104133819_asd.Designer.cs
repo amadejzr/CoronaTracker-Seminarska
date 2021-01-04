@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(CoronaContext))]
-    [Migration("20210103192739_hihi")]
-    partial class hihi
+    [Migration("20210104133819_asd")]
+    partial class asd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -192,7 +192,12 @@ namespace web.Migrations
                     b.Property<string>("Naslov")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UporabnikId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UporabnikId");
 
                     b.ToTable("Prebivalisce");
                 });
@@ -254,9 +259,6 @@ namespace web.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("PrebivalisceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Priimek")
                         .HasColumnType("nvarchar(max)");
 
@@ -282,8 +284,6 @@ namespace web.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("PrebivalisceId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -342,15 +342,15 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Odlok", b =>
                 {
                     b.HasOne("web.Models.Uporabnik", "Uporabnik")
-                        .WithMany("Oldoki")
+                        .WithMany("Odloki")
                         .HasForeignKey("UporabnikId");
                 });
 
-            modelBuilder.Entity("web.Models.Uporabnik", b =>
+            modelBuilder.Entity("web.Models.Prebivalisce", b =>
                 {
-                    b.HasOne("web.Models.Prebivalisce", "Prebivalisce")
-                        .WithMany("Uporabniki")
-                        .HasForeignKey("PrebivalisceId");
+                    b.HasOne("web.Models.Uporabnik", "Uporabnik")
+                        .WithMany("Prebivalisca")
+                        .HasForeignKey("UporabnikId");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,6 +12,6 @@ namespace web.Models
         public string Naslov {get;set;}
 
 
-        public ICollection<Uporabnik> Uporabniki { get; set; }
+        public Uporabnik Uporabnik { get; set; }
     }
 }
