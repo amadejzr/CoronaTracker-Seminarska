@@ -70,6 +70,10 @@ namespace web.Areas.Identity.Pages.Account
             public String Mesto { get; set; }
 
             [Required]
+            [Display(Name = "Telefon")]
+            public String Telefon { get; set; }
+
+            [Required]
             [Display(Name = "Naslov")]
             public String Naslov { get; set; }
 
@@ -107,7 +111,7 @@ namespace web.Areas.Identity.Pages.Account
             {
                 var odlok = new Odlok {DatumZacetka = Input.DatumZacetka, DatumKonca = Input.DatumKonca};
                 var prebivalisce= new Prebivalisce{Naslov = Input.Naslov, Mesto= Input.Mesto};
-                var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Odloki = odlok,Prebivalisca = prebivalisce};
+                var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Priimek = Input.Priimek,Telefon = Input.Telefon,Odloki = odlok,Prebivalisca = prebivalisce};
                 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
