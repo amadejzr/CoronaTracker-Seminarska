@@ -66,6 +66,14 @@ namespace web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [Display(Name = "Mesto")]
+            public String Mesto { get; set; }
+
+            [Required]
+            [Display(Name = "Naslov")]
+            public String Naslov { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -99,12 +107,16 @@ namespace web.Areas.Identity.Pages.Account
             {
                 var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Priimek = Input.Priimek};
                 var odlok = new Odlok {DatumZacetka = Input.DatumZacetka, DatumKonca = Input.DatumKonca, Uporabnik = user};
+                var prebivalisce= new Prebivalisce{Naslov = Input.Naslov, Mesto= Input.Mesto,Uporabnik=user};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
                      _context.Add(odlok);
+                    await _context.SaveChangesAsync();
+
+                    _context.Add(prebivalisce);
                     await _context.SaveChangesAsync();
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
