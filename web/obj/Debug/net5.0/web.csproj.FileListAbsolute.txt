@@ -158,3 +158,6 @@
 /Users/ajerlah/sola/CoronaTracker/web/obj/Debug/net5.0/Razor/Areas/Identity/Pages/_ViewImports.cshtml.g.cs
 /Users/ajerlah/sola/CoronaTracker/web/obj/Debug/net5.0/Razor/Areas/Identity/Pages/_ViewStart.cshtml.g.cs
 /Users/ajerlah/sola/CoronaTracker/web/obj/Debug/net5.0/Razor/Views/Shared/_LoginPartial.cshtml.g.cs
+/Users/ajerlah/sola/CoronaTracker/web/bin/Debug/net5.0/MailKit.dll
+/Users/ajerlah/sola/CoronaTracker/web/bin/Debug/net5.0/MimeKit.dll
+/Users/ajerlah/sola/CoronaTracker/web/bin/Debug/net5.0/BouncyCastle.Crypto.dll
