@@ -8775,19 +8775,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Matej Vatovec\\.nuget\\packages\\": {}
+    "/Users/ajerlah/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matej Vatovec\\OneDrive\\Documents\\GitHub\\CoronaTracker-Seminarska\\web\\web.csproj",
+      "projectUniqueName": "/Users/ajerlah/sola/CoronaTracker/web/web.csproj",
       "projectName": "web",
-      "projectPath": "C:\\Users\\Matej Vatovec\\OneDrive\\Documents\\GitHub\\CoronaTracker-Seminarska\\web\\web.csproj",
-      "packagesPath": "C:\\Users\\Matej Vatovec\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matej Vatovec\\OneDrive\\Documents\\GitHub\\CoronaTracker-Seminarska\\web\\obj\\",
+      "projectPath": "/Users/ajerlah/sola/CoronaTracker/web/web.csproj",
+      "packagesPath": "/Users/ajerlah/.nuget/packages/",
+      "outputPath": "/Users/ajerlah/sola/CoronaTracker/web/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Matej Vatovec\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/ajerlah/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -8854,7 +8854,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }

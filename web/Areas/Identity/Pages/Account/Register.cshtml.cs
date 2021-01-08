@@ -127,17 +127,17 @@ namespace web.Areas.Identity.Pages.Account
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;
 
-
                 var mailMessage = new MailMessage
                 {
-
+            
                     From = new MailAddress("coronatracker333@gmail.com"),
-                    Subject = "sranje",
-                    Body = "<h1>Hello</h1>",
-                    IsBodyHtml = true,
+                    Subject = "Karantena",
+                    Body = $"Pozdravljeni,{Environment.NewLine}{Environment.NewLine}Bili ste okuženi, ali pa v stiku z osebo, ki je imela COVID. Prosimo vas, da se prijavite na spletno stran www.corona.... z vašim emailom in z geslom: {Input.Password}{Environment.NewLine}{Environment.NewLine}Naš sistem vam bo omogočal, da vpišete stike in spremljate kdaj vam poteče karantena.",
+                    
                 };
                 mailMessage.To.Add(Input.Email);
-                smtpClient.Send(mailMessage);
+                
+            
                 
             
                 
@@ -146,6 +146,8 @@ namespace web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    smtpClient.Send(mailMessage);
+                    
 
                     
 
