@@ -1,11 +1,5 @@
 @model IEnumerable<web.Models.Stik>
 
-@using Microsoft.AspNetCore.Identity
-@using web.Models
-
-@inject SignInManager<Uporabnik> SignInManager
-@inject UserManager<Uporabnik> UserManager
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -27,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -44,11 +41,14 @@
             <td>
                  @Html.DisplayFor(modelItem => item.Email)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
              <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="Confirm" asp-route-id="@item.Id">Confirm</a>
+                <a id="register" asp-area="Identity" asp-page="/Account/Register">Confirm</a>
             </td>
         </tr>
     }
@@ -67,10 +67,13 @@ else{
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+                <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                    <a asp-action="Confirm" asp-route-id="@item.Id">Confirm</a> 
+                    <a id="register" asp-area="Identity" asp-page="/Account/Register">Confirm</a>
                 </td>
             </tr>
         }

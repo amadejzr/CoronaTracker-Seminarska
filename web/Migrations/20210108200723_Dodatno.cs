@@ -58,6 +58,7 @@ namespace web.Migrations
                     Ime = table.Column<string>(nullable: true),
                     Priimek = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
+                    Telefon = table.Column<string>(nullable: true),
                     IdUser = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

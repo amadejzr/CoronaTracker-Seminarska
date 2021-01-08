@@ -13,12 +13,12 @@ using System.Web;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
+
 namespace web.Controllers
 {
     public class StikController : Controller
     {
         private readonly CoronaContext _context;
-
 
         public StikController(CoronaContext context)
         {
@@ -28,7 +28,6 @@ namespace web.Controllers
         // GET: Stik
         public async Task<IActionResult> Index()
         {
-
             var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewData["userId"] = userId;
             return View(await _context.Stiki.ToListAsync());
@@ -63,11 +62,10 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ime,Priimek,Email,IdUser")] Stik stik)
+        public async Task<IActionResult> Create([Bind("Id,Ime,Priimek,Email,Telefon,IdUser")] Stik stik)
         {
-            
             if (ModelState.IsValid)
-            {   
+            {
                 var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
                 stik.IdUser = userId;
                 _context.Add(stik);
@@ -98,7 +96,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ime,Priimek,Email,IdUser")] Stik stik)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ime,Priimek,Email,Telefon,IdUser")] Stik stik)
         {
             if (id != stik.Id)
             {
@@ -156,49 +154,10 @@ namespace web.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Confirm(int id)
-        {
-        
-            var stik = await _context.Stiki
-                .FirstOrDefaultAsync(m => m.Id == id);
-            Uporabnik uporabnik = new Uporabnik();
-            uporabnik.Ime = stik.Ime;
-            uporabnik.Priimek = stik.Priimek;
-            uporabnik.Email = stik.Email;
-            uporabnik.NormalizedEmail = stik.Email.ToUpper();
-            uporabnik.UserName = stik.Email;
-            uporabnik.NormalizedUserName = stik.Email.ToUpper();
-            //uporabnik.PasswordHash = hashed("Vaje123?");
-
-             _context.Add(uporabnik);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-        }
 
         private bool StikExists(int id)
         {
             return _context.Stiki.Any(e => e.Id == id);
         }
-
-        public string hashed(string password){
-            byte[] salt = new byte[128 / 8];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
-            //Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
-    
-            // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA1,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
-            //Console.WriteLine($"Hashed: {hashed}");
-            return hashed;
-        
-        }
-    
     }
 }
