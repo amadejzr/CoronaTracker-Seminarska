@@ -158,14 +158,17 @@ namespace web.Controllers
         }
         public async Task<IActionResult> Confirm(int id)
         {
+        
             var stik = await _context.Stiki
                 .FirstOrDefaultAsync(m => m.Id == id);
             Uporabnik uporabnik = new Uporabnik();
             uporabnik.Ime = stik.Ime;
             uporabnik.Priimek = stik.Priimek;
             uporabnik.Email = stik.Email;
+            uporabnik.NormalizedEmail = stik.Email.ToUpper();
             uporabnik.UserName = stik.Email;
-            uporabnik.PasswordHash = hashed("Vaje123?");
+            uporabnik.NormalizedUserName = stik.Email.ToUpper();
+            //uporabnik.PasswordHash = hashed("Vaje123?");
 
              _context.Add(uporabnik);
                 await _context.SaveChangesAsync();

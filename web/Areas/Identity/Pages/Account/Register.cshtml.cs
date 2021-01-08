@@ -15,6 +15,11 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using web.Models;
 using web.Data;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Threading;
+using System.ComponentModel;
 
 namespace web.Areas.Identity.Pages.Account
 {
@@ -114,6 +119,30 @@ namespace web.Areas.Identity.Pages.Account
                 var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Priimek = Input.Priimek,Telefon = Input.Telefon,Odloki = odlok,Prebivalisca = prebivalisce};
                 
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                SmtpClient client = new SmtpClient("coronatracker333@gmail.com");
+                client.Credentials = new NetworkCredential("coronatracker333@gmail.com", "CoronaisBad");
+                var smtpClient = new SmtpClient("smtp.gmail.com");
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new NetworkCredential("coronatracker333@gmail.com", "CoronaisBad");
+                smtpClient.EnableSsl = true;
+                smtpClient.UseDefaultCredentials = false;
+
+
+                var mailMessage = new MailMessage
+                {
+
+                    From = new MailAddress("coronatracker333@gmail.com"),
+                    Subject = "sranje",
+                    Body = "<h1>Hello</h1>",
+                    IsBodyHtml = true,
+                };
+                mailMessage.To.Add(Input.Email);
+                smtpClient.Send(mailMessage);
+                
+            
+                
+                
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
