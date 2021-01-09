@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(CoronaContext))]
-    [Migration("20210105204635_Dodatno")]
-    partial class Dodatno
+    [Migration("20210109144013_hehe")]
+    partial class hehe
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

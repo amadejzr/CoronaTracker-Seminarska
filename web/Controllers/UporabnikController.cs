@@ -38,7 +38,7 @@ namespace web.Controllers
                 return NotFound();
             }
 
-            var uporabnik = await _context.Uporabniki
+            var uporabnik = await _context.Uporabniki.Include(u => u.Odloki).Include(c => c.Prebivalisca)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (uporabnik == null)
             {
