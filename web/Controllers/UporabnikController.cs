@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -38,6 +39,24 @@ namespace web.Controllers
             }
 
             var uporabnik = await _context.Uporabniki
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (uporabnik == null)
+            {
+                return NotFound();
+            }
+
+            return View(uporabnik);
+        }
+
+        public async Task<IActionResult> Konec(string id)
+        {
+            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var uporabnik = await _context.Uporabniki.Include(u => u.Odloki).Include(c => c.Prebivalisca)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (uporabnik == null)
             {

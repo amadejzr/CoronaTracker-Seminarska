@@ -163,3 +163,4 @@
 /Users/ajerlah/sola/CoronaTracker/web/obj/Debug/net5.0/ref/web.dll
 /Users/ajerlah/sola/CoronaTracker/web/obj/Debug/net5.0/web.pdb
 /Users/ajerlah/sola/CoronaTracker/web/obj/Debug/net5.0/web.genruntimeconfig.cache
+/Users/ajerlah/sola/CoronaTracker/web/obj/Debug/net5.0/Razor/Views/Uporabnik/Konec.cshtml.g.cs

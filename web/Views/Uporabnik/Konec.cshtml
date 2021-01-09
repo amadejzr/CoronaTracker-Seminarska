@@ -1,0 +1,7 @@
+@model web.Models.Uporabnik
+
+@{
+    ViewData["Title"] = "Konec";
+}
+
+@Html.DisplayFor(model => (model.Odloki.DatumKonca - model.Odloki.DatumZacetka).Days)
