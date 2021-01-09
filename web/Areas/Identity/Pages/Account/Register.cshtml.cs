@@ -24,6 +24,7 @@ using System.ComponentModel;
 namespace web.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
+    [Authorize]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<Uporabnik> _signInManager;

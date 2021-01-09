@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace web.Controllers
     public class UporabnikController : Controller
     {
         private readonly CoronaContext _context;
+        private readonly UserManager<Uporabnik> _usermanager;
 
-        public UporabnikController(CoronaContext context)
+        public UporabnikController(CoronaContext context, UserManager<Uporabnik> userManager)
         {
             _context = context;
+            _usermanager = userManager;
         }
 
         // GET: Uporabnik
@@ -50,7 +53,7 @@ namespace web.Controllers
 
         public async Task<IActionResult> Konec(string id)
         {
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
             if (id == null)
             {
                 return NotFound();
