@@ -53,22 +53,14 @@ namespace web.Controllers
             return View(uporabnik);
         }
 
-        public async Task<IActionResult> Konec(string id)
+        public async Task<IActionResult> Konec()
         {
-            
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var uporabnik = await _context.Uporabniki.Include(u => u.Odloki).Include(c => c.Prebivalisca)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (uporabnik == null)
-            {
-                return NotFound();
-            }
+            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewData["userId"] = userId;
+            var lol = await _context.Uporabniki.Include(u => u.Odloki).Include(c => c.Prebivalisca).ToListAsync();
+            return View(lol);
 
-            return View(uporabnik);
         }
 
         // GET: Uporabnik/Create

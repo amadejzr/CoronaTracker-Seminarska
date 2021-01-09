@@ -1,7 +1,18 @@
-@model web.Models.Uporabnik
+@model IEnumerable<web.Models.Uporabnik>
+
+
+@using Microsoft.AspNetCore.Identity
+@using web.Models
+
+@inject SignInManager<Uporabnik> SignInManager
+@inject UserManager<Uporabnik> UserManager
 
 @{
     ViewData["Title"] = "Konec";
 }
 
-@Html.DisplayFor(model => (model.Odloki.DatumKonca - model.Odloki.DatumZacetka).Days)
+@foreach (var item in Model) {
+        @if(item.Id.Equals((string)ViewData["userId"])){
+            @Html.DisplayFor(model => (item.Odloki.DatumKonca - item.Odloki.DatumZacetka).Days)
+        }
+}

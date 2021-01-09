@@ -168,6 +168,7 @@ namespace web.Controllers
             uporabnik.NormalizedEmail = stik.Email.ToUpper();
             uporabnik.UserName = stik.Email;
             uporabnik.NormalizedUserName = stik.Email.ToUpper();
+            
             //uporabnik.PasswordHash = hashed("Vaje123?");
 
              _context.Add(uporabnik);
