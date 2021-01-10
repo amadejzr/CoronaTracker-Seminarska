@@ -20,6 +20,7 @@ namespace web.Models
         public string Mesto{get;set;}
         public string Naslov {get;set;}
 
+
         
         
         
