@@ -26,15 +26,21 @@
                         @if (SignInManager.IsSignedIn(User)){
                             @if (User.IsInRole("Inspektor") || User.IsInRole("Administrator")){
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Uporabnik" asp-action="Index">Karantene</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Uporabnik" asp-action="Index">Uporabniki</a>
                         </li>
                             }
+                            else
+                            {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Uporabnik" asp-action="Konec">Konec karantene</a>
                         </li>
+                            }
+                            @if (User.IsInRole("Administrator")){
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Stik" asp-action="Index">Stiki</a>
                         </li>
+                        }
+                            
                         }
                     </ul>
                 </div>

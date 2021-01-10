@@ -11,6 +11,7 @@
     ViewData["Title"] = "Konec";
 }
 
+
 @foreach (var item in Model) {
         @if(item.Id.Equals((string)ViewData["userId"])){
             @Html.DisplayFor(model => (item.Odloki.DatumKonca - item.Odloki.DatumZacetka).Days)

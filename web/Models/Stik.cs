@@ -14,6 +14,8 @@ namespace web.Models
         public string Email{get;set;}
 
         public string IdUser{get;set;}
+
+        
         
         
     }

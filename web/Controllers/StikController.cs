@@ -12,17 +12,21 @@ using System.Security.Claims;
 using System.Web;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace web.Controllers
 {
     public class StikController : Controller
     {
         private readonly CoronaContext _context;
+        private readonly UserManager<Uporabnik> _userManager;
 
 
-        public StikController(CoronaContext context)
+        public StikController(CoronaContext context,UserManager<Uporabnik> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Stik
@@ -158,20 +162,20 @@ namespace web.Controllers
         }
         public async Task<IActionResult> Confirm(int id)
         {
-        
+
             var stik = await _context.Stiki
                 .FirstOrDefaultAsync(m => m.Id == id);
-            Uporabnik uporabnik = new Uporabnik();
-            uporabnik.Ime = stik.Ime;
-            uporabnik.Priimek = stik.Priimek;
-            uporabnik.Email = stik.Email;
-            uporabnik.NormalizedEmail = stik.Email.ToUpper();
-            uporabnik.UserName = stik.Email;
-            uporabnik.NormalizedUserName = stik.Email.ToUpper();
+            
+            var odlok = new Odlok {DatumZacetka = DateTime.Now, DatumKonca = DateTime.Now.AddDays(14)};
+            var user = new Uporabnik { UserName = stik.Email, Email = stik.Email,Ime = stik.Ime,Priimek = stik.Priimek,Odloki = odlok};
+                
+                var result = await _userManager.CreateAsync(user, "Abc-123");
+        
+
+            _context.Stiki.Remove(stik);
             
             //uporabnik.PasswordHash = hashed("Vaje123?");
 
-             _context.Add(uporabnik);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
         }
