@@ -42,6 +42,7 @@ namespace web.Controllers
 
             var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewData["userId"] = userId;
+            
             return View(await _context.Stiki.ToListAsync());
         }
 

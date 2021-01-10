@@ -11,7 +11,8 @@
 }
 
 <h1>Index</h1>
-
+<p>@ViewData["userId"]</p>
+<p></p>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -35,6 +36,13 @@
     foreach (var item in Model) {
         
         <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Uporabniki.Ime)
+                </td>
+
+            <td>
+                    @Html.DisplayFor(modelItem => item.IdUser)
+                </td>
                <td>
                  @Html.DisplayFor(modelItem => item.Ime)
             </td>
