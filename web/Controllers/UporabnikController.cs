@@ -28,6 +28,9 @@ namespace web.Controllers
         [Authorize(Roles = "Administrator,Inspektor")]
         public async Task<IActionResult> Index()
         {
+            
+
+            
         var uporabnik = _context.Uporabniki
         .Include(u => u.Odloki).Include(c => c.Prebivalisca)
         .AsNoTracking();
