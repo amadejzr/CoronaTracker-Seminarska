@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(CoronaContext))]
-    [Migration("20210109144013_hehe")]
-    partial class hehe
+    [Migration("20210110142702_abc")]
+    partial class abc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -208,7 +208,16 @@ namespace web.Migrations
                     b.Property<string>("Ime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Mesto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Naslov")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Priimek")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefon")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

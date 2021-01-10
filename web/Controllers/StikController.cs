@@ -13,7 +13,8 @@ using System.Web;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.ComponentModel.DataAnnotations;
-
+using System.Net.Mail;
+using System.Net;
 
 namespace web.Controllers
 {
@@ -22,12 +23,18 @@ namespace web.Controllers
         private readonly CoronaContext _context;
         private readonly UserManager<Uporabnik> _userManager;
 
+      
+
 
         public StikController(CoronaContext context,UserManager<Uporabnik> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
+
+       
+        
+        
 
         // GET: Stik
         public async Task<IActionResult> Index()
@@ -67,7 +74,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ime,Priimek,Email,IdUser")] Stik stik)
+        public async Task<IActionResult> Create([Bind("Id,Ime,Priimek,Email,IdUser,Telefon,Naslov,Mesto")] Stik stik)
         {
             
             if (ModelState.IsValid)
@@ -166,13 +173,37 @@ namespace web.Controllers
             var stik = await _context.Stiki
                 .FirstOrDefaultAsync(m => m.Id == id);
             
-            var odlok = new Odlok {DatumZacetka = DateTime.Now, DatumKonca = DateTime.Now.AddDays(14)};
-            var user = new Uporabnik { UserName = stik.Email, Email = stik.Email,Ime = stik.Ime,Priimek = stik.Priimek,Odloki = odlok};
-                
-                var result = await _userManager.CreateAsync(user, "Abc-123");
+            var odlok = new Odlok {DatumZacetka = DateTime.Now, DatumKonca = DateTime.Now.AddDays(10)};
+            var prebivalisce = new Prebivalisce {Naslov = stik.Naslov, Mesto = stik.Mesto};
+            var user = new Uporabnik { UserName = stik.Email, Email = stik.Email,Ime = stik.Ime,Priimek = stik.Priimek,Telefon = stik.Telefon,Odloki = odlok,Prebivalisca = prebivalisce};
+            string coda = "Abc-123";
+                var result = await _userManager.CreateAsync(user, coda);
+
+            if(result.Succeeded){
+                SmtpClient client = new SmtpClient("coronatracker333@gmail.com");
+                client.Credentials = new NetworkCredential("coronatracker333@gmail.com", "CoronaisBad");
+                var smtpClient = new SmtpClient("smtp.gmail.com");
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new NetworkCredential("coronatracker333@gmail.com", "CoronaisBad");
+                smtpClient.EnableSsl = true;
+                smtpClient.UseDefaultCredentials = false;
+
+                var mailMessage = new MailMessage
+                {
+            
+                    From = new MailAddress("coronatracker333@gmail.com"),
+                    Subject = "Karantena",
+                    Body = $"Pozdravljeni,{Environment.NewLine}{Environment.NewLine}Bili ste v stiku z okuženo osebo. Prosimo vas, da se prijavite na spletno stran www.corona.... z vašim emailom in z geslom: {coda}{Environment.NewLine}{Environment.NewLine}Naš sistem vam bo pokazal do kdaj vam traja karantena.",
+                    
+                };
+                mailMessage.To.Add(stik.Email);
+
+                 smtpClient.Send(mailMessage);
+
         
 
             _context.Stiki.Remove(stik);
+            }
             
             //uporabnik.PasswordHash = hashed("Vaje123?");
 

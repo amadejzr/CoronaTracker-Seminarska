@@ -132,7 +132,7 @@ namespace web.Areas.Identity.Pages.Account
             
                     From = new MailAddress("coronatracker333@gmail.com"),
                     Subject = "Karantena",
-                    Body = $"Pozdravljeni,{Environment.NewLine}{Environment.NewLine}Bili ste okuženi, ali pa v stiku z osebo, ki je imela COVID. Prosimo vas, da se prijavite na spletno stran www.corona.... z vašim emailom in z geslom: {Input.Password}{Environment.NewLine}{Environment.NewLine}Naš sistem vam bo omogočal, da vpišete stike in spremljate kdaj vam poteče karantena.",
+                    Body = $"Pozdravljeni,{Environment.NewLine}{Environment.NewLine}Vaš test je bil pozitiven. Prosimo vas, da se prijavite na spletno stran www.corona.... z vašim emailom in z geslom: {Input.Password}{Environment.NewLine}{Environment.NewLine}Naš sistem vam bo omogočal, da vpišete stike in spremljate kdaj vam poteče karantena.",
                     
                 };
                 mailMessage.To.Add(Input.Email);

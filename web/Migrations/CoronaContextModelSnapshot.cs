@@ -206,7 +206,16 @@ namespace web.Migrations
                     b.Property<string>("Ime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Mesto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Naslov")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Priimek")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefon")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
