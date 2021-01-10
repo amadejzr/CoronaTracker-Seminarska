@@ -6,6 +6,13 @@
 
 <h1>Index</h1>
 
+<form asp-controller="Uporabnik" asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 @{
     @if (User.IsInRole("Inspektor")){
     <table class="table">

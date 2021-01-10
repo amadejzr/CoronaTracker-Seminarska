@@ -26,15 +26,20 @@ namespace web.Controllers
 
         // GET: Uporabnik
         [Authorize(Roles = "Administrator,Inspektor")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            var uporabniks = from m in _context.Uporabniki.Include(u => u.Odloki).Include(c => c.Prebivalisca)
+                 select m;
+
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        uporabniks = uporabniks.Where(s => s.Prebivalisca.Mesto.Contains(searchString));
+    }
             
 
             
-        var uporabnik = _context.Uporabniki
-        .Include(u => u.Odloki).Include(c => c.Prebivalisca)
-        .AsNoTracking();
-        return View(await uporabnik.ToListAsync());
+        
+        return View(await uporabniks.ToListAsync());
             
         }
 
