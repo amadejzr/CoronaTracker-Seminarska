@@ -29,6 +29,7 @@ namespace web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSwaggerGen();
 
             services.AddIdentity<Uporabnik, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128).
             AddEntityFrameworkStores<CoronaContext>().AddDefaultUI().AddDefaultTokenProviders();
@@ -67,6 +68,12 @@ namespace web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                     endpoints.MapRazorPages();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+            c.SwaggerEndpoint("./v1/swagger.json", "My API V1");
             });
         }
     }
