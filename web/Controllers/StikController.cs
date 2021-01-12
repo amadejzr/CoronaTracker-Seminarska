@@ -186,7 +186,11 @@ namespace web.Controllers
   
     
                 char[] chars = new char[length];  
-                for (int i = 0; i < length; i++)  
+                chars[0] = 'a';
+                chars[1] = 'A';
+                chars[2] = '-';
+                chars[3] = '1';    
+                for (int i = 4; i < length+3; i++)  
                 {  
                      chars[i] = validChars[random.Next(0, validChars.Length)];  
                 } 

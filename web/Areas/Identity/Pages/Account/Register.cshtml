@@ -4,10 +4,6 @@
     ViewData["Title"] = "Register";
 }
 <h3>Dodaj uporabnika</h3>
-@if (ViewData["Ustvarjen"] != "True")
-{
-<h5>Uporabnik ni bil ustvarjen</h5>
-}
  <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
 <div class="row">
     <div class="col-md-4">

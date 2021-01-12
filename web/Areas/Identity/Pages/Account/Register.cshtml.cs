@@ -110,7 +110,7 @@ namespace web.Areas.Identity.Pages.Account
                 var prebivalisce= new Prebivalisce{Naslov = Input.Naslov, Mesto= Input.Mesto};
                 var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Priimek = Input.Priimek,Telefon = Input.Telefon,Odloki = odlok,Prebivalisca = prebivalisce};
                 
-                ViewData["Ustvarjen"] = "False";
+               
 
                 string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-&#";  
                 Random random = new Random();
@@ -159,7 +159,6 @@ namespace web.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
                     smtpClient.Send(mailMessage);
-                    ViewData["Ustvarjen"] = "True";
                     
 
                     
