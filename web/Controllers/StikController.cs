@@ -179,8 +179,19 @@ namespace web.Controllers
             var odlok = new Odlok {DatumZacetka = DateTime.Now, DatumKonca = DateTime.Now.AddDays(10)};
             var prebivalisce = new Prebivalisce {Naslov = stik.Naslov, Mesto = stik.Mesto};
             var user = new Uporabnik { UserName = stik.Email, Email = stik.Email,Ime = stik.Ime,Priimek = stik.Priimek,Telefon = stik.Telefon,Odloki = odlok,Prebivalisca = prebivalisce};
-            string coda = "Abc-123";
-                var result = await _userManager.CreateAsync(user, coda);
+        
+            string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789---------";  
+                Random random = new Random();
+                int length = 6;  
+  
+    
+                char[] chars = new char[length];  
+                for (int i = 0; i < length; i++)  
+                {  
+                     chars[i] = validChars[random.Next(0, validChars.Length)];  
+                } 
+                string pw = new string(chars); 
+                var result = await _userManager.CreateAsync(user, pw);
 
             if(result.Succeeded){
                 SmtpClient client = new SmtpClient("coronatracker333@gmail.com");
@@ -196,7 +207,7 @@ namespace web.Controllers
             
                     From = new MailAddress("coronatracker333@gmail.com"),
                     Subject = "Karantena",
-                    Body = $"Pozdravljeni,{Environment.NewLine}{Environment.NewLine}Bili ste v stiku z okuženo osebo. Prosimo vas, da se prijavite na spletno stran www.corona.... z vašim emailom in z geslom: {coda}{Environment.NewLine}{Environment.NewLine}Naš sistem vam bo pokazal do kdaj vam traja karantena.",
+                    Body = $"Pozdravljeni,{Environment.NewLine}{Environment.NewLine}Bili ste v stiku z okuženo osebo. Prosimo vas, da se prijavite na spletno stran https://coronatrackerr.azurewebsites.net z vašim emailom in z geslom: {pw}{Environment.NewLine}{Environment.NewLine}Naš sistem vam bo pokazal do kdaj vam traja karantena.",
                     
                 };
                 mailMessage.To.Add(stik.Email);

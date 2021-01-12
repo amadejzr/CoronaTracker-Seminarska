@@ -82,16 +82,6 @@ namespace web.Areas.Identity.Pages.Account
             [Display(Name = "Naslov")]
             public String Naslov { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Password { get; set; }
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
 
             [Required]
             [Display(Name = "Datum zacetka")]
@@ -118,7 +108,22 @@ namespace web.Areas.Identity.Pages.Account
                 var prebivalisce= new Prebivalisce{Naslov = Input.Naslov, Mesto= Input.Mesto};
                 var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Priimek = Input.Priimek,Telefon = Input.Telefon,Odloki = odlok,Prebivalisca = prebivalisce};
                 
-                var result = await _userManager.CreateAsync(user, Input.Password);
+
+
+                string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789---------";  
+                Random random = new Random();
+                int length = 6;  
+  
+    
+                char[] chars = new char[length];  
+                for (int i = 0; i < length; i++)  
+                {  
+                     chars[i] = validChars[random.Next(0, validChars.Length)];  
+                } 
+                string pw = new string(chars); 
+
+
+                var result = await _userManager.CreateAsync(user, pw);
                 SmtpClient client = new SmtpClient("coronatracker333@gmail.com");
                 client.Credentials = new NetworkCredential("coronatracker333@gmail.com", "CoronaisBad");
                 var smtpClient = new SmtpClient("smtp.gmail.com");
@@ -132,7 +137,7 @@ namespace web.Areas.Identity.Pages.Account
             
                     From = new MailAddress("coronatracker333@gmail.com"),
                     Subject = "Karantena",
-                    Body = $"Pozdravljeni,{Environment.NewLine}{Environment.NewLine}Vaš test je bil pozitiven. Prosimo vas, da se prijavite na spletno stran www.corona.... z vašim emailom in z geslom: {Input.Password}{Environment.NewLine}{Environment.NewLine}Naš sistem vam bo omogočal, da vpišete stike in spremljate kdaj vam poteče karantena.",
+                    Body = $"Pozdravljeni,{Environment.NewLine}{Environment.NewLine}Vaš test je bil pozitiven. Prosimo vas, da se prijavite na spletno stran https://coronatrackerr.azurewebsites.net z vašim emailom in z geslom: {pw}{Environment.NewLine}{Environment.NewLine}Naš sistem vam bo omogočal, da vpišete stike in spremljate kdaj vam poteče karantena.",
                     
                 };
                 mailMessage.To.Add(Input.Email);
