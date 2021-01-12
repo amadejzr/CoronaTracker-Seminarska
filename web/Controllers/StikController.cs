@@ -81,7 +81,7 @@ namespace web.Controllers
             if (ModelState.IsValid)
             {   
                 var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
-                stik.narejen = "Račun ni ustvarjen";
+                stik.narejen = "0";
                 stik.IdUser = userId;
                 _context.Add(stik);
                 await _context.SaveChangesAsync();
@@ -123,7 +123,7 @@ namespace web.Controllers
                 try
                 {
                     var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    stik.narejen = "Račun ni ustvarjen";
+                    stik.narejen = "0";
                     stik.IdUser = userId;
                     _context.Update(stik);
                     await _context.SaveChangesAsync();
@@ -177,7 +177,7 @@ namespace web.Controllers
 
             var stik = await _context.Stiki
                 .FirstOrDefaultAsync(m => m.Id == id);
-                stik.narejen="Stik ima račun";
+                stik.narejen="1";
             
             var odlok = new Odlok {DatumZacetka = DateTime.Now, DatumKonca = DateTime.Now.AddDays(10)};
             var prebivalisce = new Prebivalisce {Naslov = stik.Naslov, Mesto = stik.Mesto};

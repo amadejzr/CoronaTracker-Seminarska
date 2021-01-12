@@ -55,10 +55,12 @@
              <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Uredi</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Podrobnejši podatki</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Izbriši</a> |
-                @if(@Html.DisplayFor(modelItem => item.narejen).ToString() == "Račun ni ustvarjen"){
+                <a asp-action="Delete" asp-route-id="@item.Id">Izbriši</a> 
+                @if(item.narejen == "0"){
+                <a>|</a>
                 <a asp-action="Confirm" asp-route-id="@item.Id">Potrdi</a>
                 }
+                
             </td>
         </tr>
     }
