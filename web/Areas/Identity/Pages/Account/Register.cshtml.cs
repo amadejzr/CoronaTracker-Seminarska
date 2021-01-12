@@ -91,6 +91,7 @@ namespace web.Areas.Identity.Pages.Account
             [Display(Name = "Datum konca")]
             public DateTime DatumKonca { get; set; }
         }
+        
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -101,6 +102,7 @@ namespace web.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+            
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
@@ -108,15 +110,19 @@ namespace web.Areas.Identity.Pages.Account
                 var prebivalisce= new Prebivalisce{Naslov = Input.Naslov, Mesto= Input.Mesto};
                 var user = new Uporabnik { UserName = Input.Email, Email = Input.Email,Ime = Input.Ime,Priimek = Input.Priimek,Telefon = Input.Telefon,Odloki = odlok,Prebivalisca = prebivalisce};
                 
+                ViewData["Ustvarjen"] = "False";
 
-
-                string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789---------";  
+                string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-&#";  
                 Random random = new Random();
                 int length = 6;  
   
     
-                char[] chars = new char[length];  
-                for (int i = 0; i < length; i++)  
+                char[] chars = new char[length+3]; 
+                chars[0] = 'a';
+                chars[1] = 'A';
+                chars[2] = '-';
+                chars[3] = '1';    
+                for (int i = 4; i < length+3; i++)  
                 {  
                      chars[i] = validChars[random.Next(0, validChars.Length)];  
                 } 
@@ -124,6 +130,7 @@ namespace web.Areas.Identity.Pages.Account
 
 
                 var result = await _userManager.CreateAsync(user, pw);
+                
                 SmtpClient client = new SmtpClient("coronatracker333@gmail.com");
                 client.Credentials = new NetworkCredential("coronatracker333@gmail.com", "CoronaisBad");
                 var smtpClient = new SmtpClient("smtp.gmail.com");
@@ -152,6 +159,7 @@ namespace web.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
                     smtpClient.Send(mailMessage);
+                    ViewData["Ustvarjen"] = "True";
                     
 
                     
