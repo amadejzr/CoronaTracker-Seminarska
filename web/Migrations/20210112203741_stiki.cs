@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web.Migrations
 {
-    public partial class abc : Migration
+    public partial class stiki : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,7 +61,8 @@ namespace web.Migrations
                     Telefon = table.Column<string>(nullable: true),
                     IdUser = table.Column<string>(nullable: true),
                     Mesto = table.Column<string>(nullable: true),
-                    Naslov = table.Column<string>(nullable: true)
+                    Naslov = table.Column<string>(nullable: true),
+                    narejen = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

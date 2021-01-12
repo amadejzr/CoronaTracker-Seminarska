@@ -122,7 +122,7 @@ namespace web.Areas.Identity.Pages.Account
                 chars[1] = 'A';
                 chars[2] = '-';
                 chars[3] = '1';    
-                for (int i = 4; i < length+3; i++)  
+                for (int i = 4; i < length+4; i++)  
                 {  
                      chars[i] = validChars[random.Next(0, validChars.Length)];  
                 } 

@@ -75,12 +75,13 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ime,Priimek,Email,IdUser,Telefon,Naslov,Mesto")] Stik stik)
+        public async Task<IActionResult> Create([Bind("Id,Ime,Priimek,Email,IdUser,Telefon,Naslov,Mesto,narejen")] Stik stik)
         {
             
             if (ModelState.IsValid)
             {   
                 var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+                stik.narejen = "Račun ni ustvarjen";
                 stik.IdUser = userId;
                 _context.Add(stik);
                 await _context.SaveChangesAsync();
@@ -175,22 +176,23 @@ namespace web.Controllers
 
             var stik = await _context.Stiki
                 .FirstOrDefaultAsync(m => m.Id == id);
+                stik.narejen="Stik ima račun";
             
             var odlok = new Odlok {DatumZacetka = DateTime.Now, DatumKonca = DateTime.Now.AddDays(10)};
             var prebivalisce = new Prebivalisce {Naslov = stik.Naslov, Mesto = stik.Mesto};
             var user = new Uporabnik { UserName = stik.Email, Email = stik.Email,Ime = stik.Ime,Priimek = stik.Priimek,Telefon = stik.Telefon,Odloki = odlok,Prebivalisca = prebivalisce};
         
-            string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789---------";  
+            string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-&#";  
                 Random random = new Random();
                 int length = 6;  
   
     
-                char[] chars = new char[length];  
+                char[] chars = new char[length+4]; 
                 chars[0] = 'a';
                 chars[1] = 'A';
                 chars[2] = '-';
                 chars[3] = '1';    
-                for (int i = 4; i < length+3; i++)  
+                for (int i = 4; i < length+4; i++)  
                 {  
                      chars[i] = validChars[random.Next(0, validChars.Length)];  
                 } 
@@ -220,7 +222,7 @@ namespace web.Controllers
 
         
 
-            _context.Stiki.Remove(stik);
+            
             }
             
             //uporabnik.PasswordHash = hashed("Vaje123?");

@@ -218,6 +218,9 @@ namespace web.Migrations
                     b.Property<string>("Telefon")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("narejen")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Stik");
