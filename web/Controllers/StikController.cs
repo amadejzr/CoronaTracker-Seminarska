@@ -110,7 +110,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ime,Priimek,Email,Telefon,Naslov,Mesto")] Stik stik)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ime,Priimek,Email,Telefon,Naslov,Mesto,IdUser")] Stik stik)
         {
             if (id != stik.Id)
             {
@@ -121,6 +121,8 @@ namespace web.Controllers
             {
                 try
                 {
+                    var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    stik.IdUser = userId;
                     _context.Update(stik);
                     await _context.SaveChangesAsync();
                 }
