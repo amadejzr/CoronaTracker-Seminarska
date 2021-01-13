@@ -84,7 +84,7 @@ namespace web.Controllers
 
         public async Task<IActionResult> Konec()
         {
-
+            ViewData["datum"] = DateTime.Today.ToString("dd/MM/yyyy");
             var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewData["userId"] = userId;
             var lol = await _context.Uporabniki.Include(u => u.Odloki).Include(c => c.Prebivalisca).ToListAsync();
