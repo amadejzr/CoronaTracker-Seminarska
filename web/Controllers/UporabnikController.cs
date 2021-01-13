@@ -26,20 +26,41 @@ namespace web.Controllers
 
         // GET: Uporabnik
         [Authorize(Roles = "Administrator,Inspektor")]
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string sortOrder,string searchString)
         {
+
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Mesto" ? "Mesto_desc" : "Mesto";
+            ViewData["CurrentFilter"] = searchString;
+
             var uporabniks = from m in _context.Uporabniki.Include(u => u.Odloki).Include(c => c.Prebivalisca)
                  select m;
 
-    if (!String.IsNullOrEmpty(searchString))
+        if (!String.IsNullOrEmpty(searchString))
     {
-        uporabniks = uporabniks.Where(s => s.Prebivalisca.Mesto.Contains(searchString));
+        uporabniks = uporabniks.Where(s => s.Priimek.Contains(searchString)
+                               || s.Ime.Contains(searchString));
     }
-            
+
+        switch (sortOrder)
+    {
+        case "name_desc":
+            uporabniks = uporabniks.OrderByDescending(s => s.Ime);
+            break;
+        case "Mesto":
+            uporabniks = uporabniks.OrderBy(s => s.Prebivalisca.Mesto);
+            break;
+        case "mesto_desc":
+            uporabniks = uporabniks.OrderByDescending(s => s.Prebivalisca.Mesto);
+            break;
+        default:
+            uporabniks = uporabniks.OrderBy(s => s.Prebivalisca.Mesto);
+            break;
+    }
 
             
         
-        return View(await uporabniks.ToListAsync());
+        return View(await uporabniks.AsNoTracking().ToListAsync());
             
         }
 
