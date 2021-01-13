@@ -11,7 +11,7 @@
     ViewData["Title"] = "Konec";
 }
 
-<h1>Karantena vam poteče čez
+<h1 style="text-align: center;">Karantena vam poteče čez
 
 @foreach (var item in Model) {
         @if(item.Id.Equals((string)ViewData["userId"])){
@@ -20,3 +20,4 @@
 }
 
  dni</h1>
+
