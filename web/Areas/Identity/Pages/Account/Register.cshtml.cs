@@ -117,7 +117,7 @@ namespace web.Areas.Identity.Pages.Account
                 int length = 6;  
   
     
-                char[] chars = new char[length+3]; 
+                char[] chars = new char[length+4]; 
                 chars[0] = 'a';
                 chars[1] = 'A';
                 chars[2] = '-';
