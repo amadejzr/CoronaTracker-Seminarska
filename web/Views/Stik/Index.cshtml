@@ -26,9 +26,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
+            @if (User.IsInRole("Administrator")){
             <th>
                 @Html.DisplayNameFor(model => model.narejen)
             </th>
+            }
             
         </tr>
     </thead>
